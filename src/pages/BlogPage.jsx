@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
-import { Container, Row, Col, Form } from 'react-bootstrap';
-import PostCard from '../components/PostCard';
-import { useFetchPosts } from '../api/useFetchPosts';
-import ReactPaginate from 'react-paginate';
-import styles from '../styles/blogpage.module.css';
+import React, { useState } from "react";
+import { Container, Row, Col, Form } from "react-bootstrap";
+import PostCard from "../components/PostCard";
+import { useFetchPosts } from "../api/useFetchPosts";
+import ReactPaginate from "react-paginate";
+import Snippet from "../components/common/Snippet";
+import styles from "../styles/blogpage.module.css";
 
 const BlogPage = () => {
   const { data: posts, isLoading, error } = useFetchPosts();
   const [currentPage, setCurrentPage] = useState(0);
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -19,10 +20,13 @@ const BlogPage = () => {
   }
 
   // Obtener categorías únicas
-  const categories = ['all', ...new Set(posts.map(post => post.category))];
+  const categories = ["all", ...new Set(posts.map((post) => post.category))];
 
   // Filtrar posts según la categoría seleccionada
-  const filteredPosts = selectedCategory === 'all' ? posts : posts.filter(post => post.category === selectedCategory);
+  const filteredPosts =
+    selectedCategory === "all"
+      ? posts
+      : posts.filter((post) => post.category === selectedCategory);
 
   const postsPerPage = 3;
   const offset = currentPage * postsPerPage;
@@ -40,20 +44,26 @@ const BlogPage = () => {
 
   return (
     <>
-      <div className={`${styles['position-relative']} ${styles['cover-background']}`} style={{ backgroundImage: 'url(/src/images/blog-bg.webp)' }}>
+    <Snippet pageName="Blog"/>
+      <div
+        className={`${styles["position-relative"]} ${styles["cover-background"]}`}
+        style={{ backgroundImage: "url(/src/assets/img/blog-head.webp)" }}
+      >
         <div className={styles.overlay}>
-          <h1 className={styles['header-text']}>
-            OPINIONES SIN COMPROMISOS
-          </h1>
+          <h1 className={styles["header-text"]}>Opiniones sin compromisos</h1>
         </div>
       </div>
+      <section className="bg-dark p-5">
       <Container>
         <Row className="my-4">
           <Col md={4} className="offset-md-4">
-            <Form.Select value={selectedCategory} onChange={handleCategoryChange}>
-              {categories.map(category => (
+            <Form.Select
+              value={selectedCategory}
+              onChange={handleCategoryChange}
+            >
+              {categories.map((category) => (
                 <option key={category} value={category}>
-                  {category === 'all' ? 'Todas las Categorías' : category}
+                  {category === "all" ? "Todas las Categorías" : category}
                 </option>
               ))}
             </Form.Select>
@@ -69,26 +79,27 @@ const BlogPage = () => {
         <Row>
           <Col className="d-flex justify-content-center">
             <ReactPaginate
-              previousLabel={'Anterior'}
-              nextLabel={'Siguiente'}
-              breakClassName={styles['page-item']}
-              breakLinkClassName={styles['page-link']}
+              previousLabel={"Anterior"}
+              nextLabel={"Siguiente"}
+              breakClassName={styles["page-item"]}
+              breakLinkClassName={styles["page-link"]}
               pageCount={pageCount}
               marginPagesDisplayed={2}
               pageRangeDisplayed={3}
               onPageChange={handlePageClick}
-              containerClassName={styles['pagination']}
-              pageClassName={styles['page-item']}
-              pageLinkClassName={styles['page-link']}
-              previousClassName={styles['page-item']}
-              previousLinkClassName={styles['page-link']}
-              nextClassName={styles['page-item']}
-              nextLinkClassName={styles['page-link']}
-              activeClassName={styles['active']}
+              containerClassName={styles["pagination"]}
+              pageClassName={styles["page-item"]}
+              pageLinkClassName={styles["page-link"]}
+              previousClassName={styles["page-item"]}
+              previousLinkClassName={styles["page-link"]}
+              nextClassName={styles["page-item"]}
+              nextLinkClassName={styles["page-link"]}
+              activeClassName={styles["active"]}
             />
           </Col>
         </Row>
       </Container>
+      </section>
     </>
   );
 };

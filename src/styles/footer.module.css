@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+IS:wght@100..400&display=swap');
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #25104d; /* Color morado principal */
+    text-align: center;
+    color: #ffffff; /* Color del texto */
+  }
+  
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .social-icons a {
+    margin: 0 0.5rem;
+    padding: 0.75rem;
+    color: #ffffff;
+    transition: background-color 0.15s ease-in-out;
+    border-radius: 30px;
+  }
+  
+  .social-icons a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .copyright {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    color: rgb(175, 81, 218); /* Color del texto de copyright */
+    font-family: 'Playwrite IS', sans-serif;
+  }
+  
+  .text-blue {
+    color: #3b5998; /* Facebook Blue */
+  }
+  
+  .text-pink {
+    color: #e4405f; /* Instagram Pink */
+  }
+  
+  .text-red {
+    color: #ff0000; /* YouTube Red */
+  }
+  
+  .text-purple {
+    color: #7b3eed; /* Purple for Penumbra link */
+  }
+  
