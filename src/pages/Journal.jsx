@@ -1,22 +1,80 @@
-import React from "react";
+import React, { useState } from "react";
+import { Container, Row, Col, Alert, Spinner } from "react-bootstrap";
+import JournalCard from "../components/JournalsCard";
+import { useFetchJournals } from "../api/useFetchJournals";
+import ReactPaginate from "react-paginate";
 import Snippet from "../components/common/Snippet";
 import styles from "../styles/journal.module.css";
 
 const Journal = () => {
+  const { data: journals, isLoading, error } = useFetchJournals();
+  const [currentPage, setCurrentPage] = useState(0);
+
+  if (isLoading) {
+    return <div className="text-center mt-5">
+      <Spinner animation="border" variant="primary" />
+    </div>;
+  }
+
+  if (error) {
+    return <Alert variant="danger" className="text-center mt-5">
+      Hemos tenido un error al cargar las revistas...
+    </Alert>;
+  }
+
+  const journalsPerPage = 3;
+  const offset = currentPage * journalsPerPage;
+  const currentJournals = journals.slice(offset, offset + journalsPerPage);
+  const pageCount = Math.ceil(journals.length / journalsPerPage);
+
+  const handlePageClick = ({ selected }) => {
+    setCurrentPage(selected);
+  };
+
   return (
     <>
       <Snippet pageName="Revista"/>
       <div
         className={`${styles["position-relative"]} ${styles["cover-background"]}`}
-        style={{ backgroundImage: "url(/src/assets/img/journal-head.webp)" }}
+        style={{ backgroundImage: "url(https://i.ibb.co/zNj95Q8/journal-head.webp)" }}
       >
         <div className={styles.overlay}>
           <h1 className={styles["header-text"]}>Miran, pero no ven...</h1>
         </div>
       </div>
-      <div className="bg-dark p-5 text-center">
-        <h1 className="text-light display-1">Próximamente... tal vez...</h1>
-      </div>      
+      <section className="bg-dark p-5">
+        <Container>
+          <Row className="g-4 py-4">
+            {currentJournals.map((journal) => (
+              <Col key={journal.id} xs={12} md={6} lg={4}>
+                <JournalCard journal={journal} />
+              </Col>
+            ))}
+          </Row>
+          <Row>
+            <Col className="d-flex justify-content-center">
+              <ReactPaginate
+                previousLabel={"Anterior"}
+                nextLabel={"Siguiente"}
+                breakClassName={styles["page-item"]}
+                breakLinkClassName={styles["page-link"]}
+                pageCount={pageCount}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={3}
+                onPageChange={handlePageClick}
+                containerClassName={styles["pagination"]}
+                pageClassName={styles["page-item"]}
+                pageLinkClassName={styles["page-link"]}
+                previousClassName={styles["page-item"]}
+                previousLinkClassName={styles["page-link"]}
+                nextClassName={styles["page-item"]}
+                nextLinkClassName={styles["page-link"]}
+                activeClassName={styles["active"]}
+              />
+            </Col>
+          </Row>
+        </Container>
+      </section>
     </>
   );
 };

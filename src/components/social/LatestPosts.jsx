@@ -18,7 +18,7 @@ const LatestPosts = () => {
   if (error) {
     return (
       <Alert variant="danger" className="text-center">
-        Error fetching posts
+        Hemos tenido un error al cargar los posts...
       </Alert>
     );
   }

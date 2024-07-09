@@ -9,7 +9,7 @@ const Podcasts = () => {
       <Snippet pageName="Podcasts" />
       <div
         className={`${styles["position-relative"]} ${styles["cover-background"]}`}
-        style={{ backgroundImage: "url(/src/assets/img/podcasts-head.webp)" }}
+        style={{ backgroundImage: "url(https://i.ibb.co/rbM0HdM/podcasts-head.webp)" }}
       >
         <div className={styles.overlay}>
           <h1 className={styles["header-text"]}>Nada que escuchar...</h1>

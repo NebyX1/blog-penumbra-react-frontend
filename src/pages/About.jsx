@@ -9,7 +9,7 @@ const About = () => {
       <Snippet pageName="Sobre Nosotros" />
       <div
         className={`${styles["position-relative"]} ${styles["cover-background"]}`}
-        style={{ backgroundImage: "url(/src/assets/img/about-head.webp)" }}
+        style={{ backgroundImage: "url(https://i.ibb.co/stXWSMr/about-head.webp)" }}
       >
         <div className={styles.overlay}>
           <h1 className={styles["header-text"]}>La noche es oscura...</h1>

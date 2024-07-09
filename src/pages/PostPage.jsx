@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { useFetchPostBySlug } from "../api/useFetchPostBySlug";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Card, Button, Spinner, Alert } from "react-bootstrap";
 import ReactMarkdown from "react-markdown";
 import Snippet from "../components/common/Snippet";
 import remarkGfm from "remark-gfm";
@@ -12,11 +12,15 @@ const PostPage = () => {
   const { data: post, isLoading, error } = useFetchPostBySlug(slug);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return  <div className="text-center mt-5">
+    <Spinner animation="border" variant="primary" />
+  </div>;
   }
 
   if (error) {
-    return <div>Error fetching post</div>;
+    return <Alert variant="danger" className="text-center mt-5">
+    Hemos tenido un error al cargar el post seleccionado o el post no existe...
+  </Alert>;
   }
 
   const { author, title, content, date, image } = post;

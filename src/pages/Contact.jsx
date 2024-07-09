@@ -9,7 +9,7 @@ const Contact = () => {
       <Snippet pageName="Contacto" />
       <div
         className={`${styles["position-relative"]} ${styles["cover-background"]}`}
-        style={{ backgroundImage: "url(/src/assets/img/contact-head.webp)" }}
+        style={{ backgroundImage: "url(https://i.ibb.co/3SZ0McH/contact-head.webp)" }}
       >
         <div className={styles.overlay}>
           <h1 className={styles["header-text"]}>Habrá respuesta... tal vez...</h1>

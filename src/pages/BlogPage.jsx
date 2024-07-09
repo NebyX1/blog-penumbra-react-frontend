@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Form } from "react-bootstrap";
+import { Container, Row, Col, Form, Alert, Spinner } from "react-bootstrap";
 import PostCard from "../components/PostCard";
 import { useFetchPosts } from "../api/useFetchPosts";
 import ReactPaginate from "react-paginate";
@@ -12,11 +12,15 @@ const BlogPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return  <div className="text-center mt-5">
+    <Spinner animation="border" variant="primary" />
+  </div>;
   }
 
   if (error) {
-    return <div>Error fetching posts</div>;
+    return <Alert variant="danger" className="text-center mt-5">
+    Hemos tenido un error al cargar los posts...
+  </Alert>;
   }
 
   // Obtener categorías únicas
@@ -47,7 +51,7 @@ const BlogPage = () => {
     <Snippet pageName="Blog"/>
       <div
         className={`${styles["position-relative"]} ${styles["cover-background"]}`}
-        style={{ backgroundImage: "url(/src/assets/img/blog-head.webp)" }}
+        style={{ backgroundImage: "url(https://i.ibb.co/3dcF2YC/blog-head.webp)" }}
       >
         <div className={styles.overlay}>
           <h1 className={styles["header-text"]}>Opiniones sin compromisos</h1>

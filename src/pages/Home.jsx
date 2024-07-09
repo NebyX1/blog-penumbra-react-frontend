@@ -11,7 +11,7 @@ const Home = () => {
       <Snippet pageName="Home" />
       <div
         className={`${styles["position-relative"]} ${styles["cover-background"]}`}
-        style={{ backgroundImage: "url(/src/assets/img/home-head.webp)" }}
+        style={{ backgroundImage: "url(https://i.ibb.co/px4B2CP/home-head.webp)" }}
       >
         <div className={styles.overlay}>
           <h1 className={styles["header-text"]}>Bienvenidos a Penumbra</h1>
