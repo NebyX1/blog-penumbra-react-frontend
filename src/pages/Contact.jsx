@@ -31,7 +31,7 @@ const Contact = () => {
             </Col>
             <Col md={4} className={`mb-4 mb-md-0 pb-4 pb-md-0 ${styles["border-violet-800"]} border-end-md border-bottom`}>
               <h2 className="h5 font-light mb-2">ENVÍANOS UN MAIL:</h2>
-              <p className="h2 font-bold">info@penumbra.info</p>
+              <p className="h2 font-bold">info@penumbra.press</p>
             </Col>
             <Col md={4} className="d-flex align-items-center justify-content-center">
               <Button
