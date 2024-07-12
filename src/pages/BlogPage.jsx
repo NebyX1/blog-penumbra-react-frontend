@@ -46,63 +46,73 @@ const BlogPage = () => {
     setCurrentPage(0); // Resetear a la primera página cuando se cambia la categoría
   };
 
+  const pageTitle = "Blog";
+  const description = "Nuestra República y su prensa caerán o se elevarán juntas.";
+  const image = "https://i.ibb.co/3dcF2YC/blog-head.webp";
+  const url = "https://www.penumbra.press/blog";
+
   return (
     <>
-    <Snippet pageName="Blog"/>
+      <Snippet
+        title={pageTitle}
+        description={description}
+        image={image}
+        url={url}
+      />
       <div
         className={`${styles["position-relative"]} ${styles["cover-background"]}`}
-        style={{ backgroundImage: "url(https://i.ibb.co/3dcF2YC/blog-head.webp)" }}
+        style={{ backgroundImage: `url(${image})` }}
       >
         <div className={styles.overlay}>
           <h1 className={styles["header-text"]}>Opiniones sin compromisos</h1>
         </div>
       </div>
       <section className="bg-dark p-5">
-      <Container>
-        <Row className="my-4">
-          <Col md={4} className="offset-md-4">
-            <Form.Select
-              value={selectedCategory}
-              onChange={handleCategoryChange}
-            >
-              {categories.map((category) => (
-                <option key={category} value={category}>
-                  {category === "all" ? "Todas las Categorías" : category}
-                </option>
-              ))}
-            </Form.Select>
-          </Col>
-        </Row>
-        <Row className="g-4 py-4">
-          {currentPosts.map((post) => (
-            <Col key={post.id} xs={12} md={6} lg={4}>
-              <PostCard post={post} />
+        <Container>
+          <Row className="my-4">
+            <Col md={4} className="offset-md-4">
+              <Form.Select
+                value={selectedCategory}
+                onChange={handleCategoryChange}
+              >
+                {categories.map((category) => (
+                  <option key={category} value={category}>
+                    {category === "all" ? "Todas las Categorías" : category}
+                  </option>
+                ))}
+              </Form.Select>
             </Col>
-          ))}
-        </Row>
-        <Row>
-          <Col className="d-flex justify-content-center">
-            <ReactPaginate
-              previousLabel={"Anterior"}
-              nextLabel={"Siguiente"}
-              breakClassName={styles["page-item"]}
-              breakLinkClassName={styles["page-link"]}
-              pageCount={pageCount}
-              marginPagesDisplayed={2}
-              pageRangeDisplayed={3}
-              onPageChange={handlePageClick}
-              containerClassName={styles["pagination"]}
-              pageClassName={styles["page-item"]}
-              pageLinkClassName={styles["page-link"]}
-              previousClassName={styles["page-item"]}
-              previousLinkClassName={styles["page-link"]}
-              nextClassName={styles["page-item"]}
-              nextLinkClassName={styles["page-link"]}
-              activeClassName={styles["active"]}
-            />
-          </Col>
-        </Row>
-      </Container>
+          </Row>
+          <Row className="g-4 py-4">
+            {currentPosts.map((post) => (
+              <Col key={post.id} xs={12} md={6} lg={4}>
+                <PostCard post={post} />
+              </Col>
+            ))}
+          </Row>
+          <Row>
+            <Col className="d-flex justify-content-center">
+              <ReactPaginate
+                previousLabel={"Anterior"}
+                nextLabel={"Siguiente"}
+                breakClassName={styles["page-item"]}
+                breakLinkClassName={styles["page-link"]}
+                pageCount={pageCount}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={3}
+                onPageChange={handlePageClick}
+                containerClassName={styles["pagination"]}
+                pageClassName={styles["page-item"]}
+                pageLinkClassName={styles["page-link"]}
+                previousClassName={styles["page-item"]}
+                previousLinkClassName={styles["page-link"]}
+                nextClassName={styles["page-item"]}
+                nextLinkClassName={styles["page-link"]}
+                activeClassName={styles["active"]}
+              />
+            </Col>
+          </Row>
+        </Container>
       </section>
     </>
   );

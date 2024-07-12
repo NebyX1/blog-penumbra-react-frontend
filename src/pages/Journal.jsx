@@ -31,12 +31,22 @@ const Journal = () => {
     setCurrentPage(selected);
   };
 
+  const pageTitle = "Revista";
+  const description = "No hay nada mágico en los libros en sí, la magia está en lo que dicen los libros.";
+  const image = "https://i.ibb.co/zNj95Q8/journal-head.webp";
+  const url = "https://www.penumbra.press/journal";
+
   return (
     <>
-      <Snippet pageName="Revista"/>
+      <Snippet
+        title={pageTitle}
+        description={description}
+        image={image}
+        url={url}
+      />
       <div
         className={`${styles["position-relative"]} ${styles["cover-background"]}`}
-        style={{ backgroundImage: "url(https://i.ibb.co/zNj95Q8/journal-head.webp)" }}
+        style={{ backgroundImage: `url(${image})` }}
       >
         <div className={styles.overlay}>
           <h1 className={styles["header-text"]}>Miran, pero no ven...</h1>
@@ -80,3 +90,4 @@ const Journal = () => {
 };
 
 export default Journal;
+

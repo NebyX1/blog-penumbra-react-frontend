@@ -1,9 +1,16 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { useFetchPostBySlug } from "../api/useFetchPostBySlug";
-import { Container, Row, Col, Card, Button, Spinner, Alert } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Button,
+  Spinner,
+  Alert,
+} from "react-bootstrap";
 import ReactMarkdown from "react-markdown";
-import { Helmet } from 'react-helmet';
 import Snippet from "../components/common/Snippet";
 import remarkGfm from "remark-gfm";
 import styles from "../styles/postpage.module.css";
@@ -13,15 +20,20 @@ const PostPage = () => {
   const { data: post, isLoading, error } = useFetchPostBySlug(slug);
 
   if (isLoading) {
-    return  <div className="text-center mt-5">
-    <Spinner animation="border" variant="primary" />
-  </div>;
+    return (
+      <div className="text-center mt-5">
+        <Spinner animation="border" variant="primary" />
+      </div>
+    );
   }
 
   if (error) {
-    return <Alert variant="danger" className="text-center mt-5">
-    Hemos tenido un error al cargar el post seleccionado o el post no existe...
-  </Alert>;
+    return (
+      <Alert variant="danger" className="text-center mt-5">
+        Hemos tenido un error al cargar el post seleccionado o el post no
+        existe...
+      </Alert>
+    );
   }
 
   const { author, title, content, date, image } = post;
@@ -30,18 +42,12 @@ const PostPage = () => {
 
   return (
     <>
-      <Snippet pageName={title} />
-      <Helmet>
-        <meta name="description" content={description} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:image" content={image} />
-        <meta property="og:url" content={window.location.href} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={image} />
-      </Helmet>
+      <Snippet
+        title={title}
+        description={description}
+        image={image}
+        url={window.location.href}
+      />
       <article className="bg-light">
         <Container className="py-5">
           <Row className="pt-5">

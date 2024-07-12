@@ -1,22 +1,27 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App.jsx';
 
-//? Importamos el archivo de estilos de Bootstrap
+// Importamos el archivo de estilos de Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
-//? Importamos el archivo de JavaScript de Bootstrap
+// Importamos el archivo de JavaScript de Bootstrap
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
-//? Importamos el componente Router
+// Importamos el componente Router
 import Router from "./router/Router.jsx";
 
-//? Importamos el componente QueryClientProvider
+// Importamos el componente QueryClientProvider
 import { QueryClientProvider } from "react-query";
-//? Importamos el QueryClient
+// Importamos el QueryClient
 import queryClient from "./api/queryClient";
 
+// Importamos HelmetProvider de react-helmet-async
+import { HelmetProvider } from 'react-helmet-async';
+
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <QueryClientProvider client={queryClient}>
-    <Router />
-    </QueryClientProvider>
-)
+  <QueryClientProvider client={queryClient}>
+    <HelmetProvider>
+      <Router />
+    </HelmetProvider>
+  </QueryClientProvider>
+);
